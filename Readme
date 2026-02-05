@@ -1,0 +1,20 @@
+Important Requirement when changing from jdk 17 to 21
+To fully support Java 21, ensure you are using Gradle 8.5 or later.
+You can check or update your wrapper with this command:
+
+Bash
+./gradlew wrapper --gradle-version 8.5
+
+The Fix: Add the Toolchain Resolver
+Open your settings.gradle file (not build.gradle) and add this plugin block at the very top. This tells Gradle to use the "Foojay" API (the standard discovery service) to find and download JDKs.
+
+File: settings.gradle
+
+Groovy
+plugins {
+    // This plugin allows Gradle to auto-download JDKs
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'your-project-name'
+// ... rest of your settings
